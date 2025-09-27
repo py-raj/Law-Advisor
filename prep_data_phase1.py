@@ -1,9 +1,3 @@
-"""
-prep_data.py
-- Reads JSONL dataset (IndicLegalQA, IPC, Constitution, etc.)
-- Converts Q&A into chat message format compatible with Llama 3 chat templates
-- Saves as Hugging Face dataset
-"""
 import json
 from datasets import Dataset
 
@@ -68,4 +62,5 @@ if __name__ == "__main__":
     p.add_argument('--input', default='data/indiclegalqa.json')
     p.add_argument('--output', default='data/indiclegalqa_chat')
     args = p.parse_args()
+
     main(args.input, args.output)
