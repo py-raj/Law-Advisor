@@ -62,3 +62,4 @@ while True:
     with open(HISTORY_FILE, "a", encoding="utf-8") as f:
         f.write(f"👤 You: {user_input}\n")
         f.write(f"🤖 Bot: {response}\n\n")
+
