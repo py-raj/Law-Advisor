@@ -1,15 +1,9 @@
-"""
-train.py — Chat-style LoRA finetuning
-- Uses Llama 3 chat template with messages
-- Saves checkpoint after every epoch
-"""
 from huggingface_hub import login
 
 # Replace with your Hugging Face token
 HUGGINGFACE_TOKEN = "your_huggingface_token_here"
 
 login(token=HUGGINGFACE_TOKEN)
-
 
 import os
 from datasets import load_from_disk
@@ -24,14 +18,14 @@ from peft import get_peft_model, LoraConfig, TaskType
 
 
 
-# ✅ Config is now embedded directly
+# Config (update as per your system capability)
 cfg = {
     "model_name_or_path": "meta-llama/Llama-3.2-3B-Instruct",  # change if you use another model
     "output_dir": "outputs",
     "per_device_train_batch_size": 1,
     "per_device_eval_batch_size": 1,   # safe for 3050 (4–6GB VRAM)
     "gradient_accumulation_steps": 16,
-    "num_train_epochs": 3,
+    "num_train_epochs": 5,        #suggest epoch 5-8
     "learning_rate": 5e-5,
     "logging_steps": 10,
     "save_strategy": "epoch",
@@ -43,36 +37,6 @@ cfg = {
     "lora_alpha": 16,
     "lora_dropout": 0.05
 }
-
-# def preprocess(dataset, tokenizer, max_length=512):
-#     def tok_fn(ex):
-#         # ex["messages"] is a list of dicts with role/content
-#         # Use LLaMA chat template to create the prompt text
-#         # You can concatenate all messages:
-#         prompt = ""
-#         for msg in ex["messages"]:
-#             role = msg["role"]
-#             content = msg["content"]
-#             if role == "system":
-#                 prompt += f"[System]: {content}\n"
-#             elif role == "user":
-#                 prompt += f"[User]: {content}\n"
-#             elif role == "assistant":
-#                 prompt += f"[Assistant]: {content}\n"
-
-#         tok = tokenizer(
-#             prompt,
-#             truncation=True,
-#             max_length=max_length,
-#             padding="max_length",
-#         )
-#         labels = tok["input_ids"].copy()
-#         return {
-#             "input_ids": tok["input_ids"],
-#             "attention_mask": tok["attention_mask"],
-#             "labels": labels
-#         }
-#     return dataset.map(tok_fn, batched=False)
 
 def preprocess(dataset, tokenizer, max_length=512):
     def tok_fn(ex):
@@ -164,3 +128,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
