@@ -11,12 +11,12 @@ Welcome to the **Law Advisor** repository! This project leverages the LLaMA 3.2 
 
 ## Repository Structure
 
-- **`prep_data.py`**: Script for preparing the data for training.
-- **`train.py`**: Script for training the model.
-- **`merge_phase1.py`**: Script for merging models in the first phase.
+- **`prep_data_phase1.py` & `prep_data_phase2.py`**: Script for preparing the data for training.
+- **`train_phase1.py` & `train_phase2.py`**: Script for training the model.
+- **`merge_phase1.py` & `merge_phase2.py`**: Script for merging models in the first and second phase.
 - **`interface.py`**: Interface for interacting with the fine-tuned model.
 - **`data/`**: Contains datasets used for fine-tuning.
-- **`outputs/`**: Stores checkpoints and final models.
+- **`outputs/` & `outputs_phase2/`**: Stores checkpoints and final models.
 
 ## Setup Instructions
 
