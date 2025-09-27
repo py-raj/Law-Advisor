@@ -16,14 +16,14 @@ from transformers import (
 )
 from peft import get_peft_model, LoraConfig, TaskType
 
-# ✅ Config
+# Config (update as per your system capability)
 cfg = {
     "model_name_or_path": "outputs/merged_phase1",  # merged Phase 1 model
     "output_dir": "outputs_phase2",
     "per_device_train_batch_size": 1,
     "per_device_eval_batch_size": 1,
     "gradient_accumulation_steps": 16,
-    "num_train_epochs": 5, # updated by 3 to 5
+    "num_train_epochs": 5, #suggested epoch 5-8
     "learning_rate": 5e-5,
     "logging_steps": 10,
     "save_strategy": "epoch",
@@ -116,3 +116,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
